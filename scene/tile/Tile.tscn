@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scene/tile/Tile.gd" type="Script" id=2]
+[ext_resource path="res://asset/wrong.png" type="Texture" id=3]
+[ext_resource path="res://asset/point_0.png" type="Texture" id=4]
+[ext_resource path="res://asset/point_1.png" type="Texture" id=5]
+[ext_resource path="res://asset/point_2.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "point",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "wrong",
+"speed": 5.0
+} ]
+
+[node name="Tile" type="Area2D" groups=[
+"ship",
+]]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SpriteShip" type="Sprite" parent="."]
+
+[node name="AnimatedStatus" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 1 )
+animation = "point"
+
+[node name="Panel" type="TextureButton" parent="."]
+margin_left = -30.0
+margin_top = -30.0
+margin_right = 30.0
+margin_bottom = 30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel" to="." method="_on_Panel_pressed"]
